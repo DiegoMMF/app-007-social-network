@@ -5,8 +5,6 @@ const database = process.env.MONGODB_DB;
 let _db;
 
 const mongoConnect = function(callback) {
-    console.log("dentro de mongoConnect, uri: ", uri);
-    console.log("dentro de mongoConnect, database: ", database);
     MongoClient.connect(uri, { useUnifiedTopology: true })
         .then(client => {
             console.log("mongoDB connection successful");
@@ -21,10 +19,8 @@ const mongoConnect = function(callback) {
 
 const getDB = () => {
     if (_db) {
-        console.log("tenemos _db");
         return _db;
     } else {
-        console.log("no tenemos _db");
         throw new Error('DB connect failed');
     }
 }

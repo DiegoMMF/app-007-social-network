@@ -1,6 +1,3 @@
-// const { ObjectID } = require('mongodb');
-const ObjectID = require('mongodb').ObjectID;
-
 const getDB = require('../../database/database').getDB;
 
 module.exports = async (req, res) => {

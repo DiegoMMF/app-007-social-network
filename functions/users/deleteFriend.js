@@ -1,14 +1,6 @@
-// const { ObjectID } = require('mongodb');
-const ObjectID = require('mongodb').ObjectID;
+const { ObjectID } = require('mongodb');
 
 const getDB = require('../../database/database').getDB;
-
-/* 
-{
-    "currentUserID": "5f8c3fc90c5fdc16daee2746",
-    "friendToDeleteID": "5f8c3fc90c5fdc16daee2747"
-}
-*/
 
 module.exports = async (req, res) => {
   try {
@@ -24,12 +16,6 @@ module.exports = async (req, res) => {
     const updateDoc = { $set: { friends: friendsArray } };
     const result = await collection.updateOne(filter, updateDoc);    
     res.send(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`);
-    /* if (result.matchedCount === 1) {
-      res.send("Successfully deleted one document.");
-    } else {
-      res.send("No documents matched the query. Deleted 0 documents.");
-    } */
-
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error.");
