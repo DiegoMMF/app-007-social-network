@@ -1,26 +1,13 @@
-const { MongoClient } = require("mongodb");
+const getDB = require('../../database/database').getDB;
 
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?w=majority";
-
-const client = new MongoClient(uri);
-
-async function run() {
+module.exports = async (req, res) => {
   try {
-    await client.connect();
-
-    const database = client.db("sample_mflix");
-    const collection = database.collection("movies");
-    // create a document to be inserted
-    const doc = { name: "Red", town: "kanto" };
-    const result = await collection.insertOne(doc);
-
-    console.log(
-      `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
-    );
-  } finally {
-    await client.close();
+    const db = getDB();
+    const collection = db.collection("posts");
+    const result = await collection.insertOne(req.body.newPost);
+    res.send(`${result.insertedCount} document(s) were inserted with the _id: ${result.insertedId}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error.");
   }
 }
-// run().catch(console.dir);

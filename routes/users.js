@@ -18,14 +18,12 @@ router.get("/:userID", getUserByID);
 module.exports = router;
 
 /**
- * middleware test --> (req, res, next) => {console.log("middleware"); next()},
- * 
  * const userLogin = require('../functions/users/userLogin');
- * const addFriend = require('../functions/users/addFriend');
- * const userSignup = require('../functions/users/userSignup');
- * const validation = require('validation');
- * const authorization = require('authorization');
- * router.post("/signup", userSignup);
  * router.post("/login", userLogin);
- * router.post("/add-friend", addFriend);
+ * 
+ * const userSignup = require('../functions/users/userSignup');
+ * router.post("/signup", userSignup);
+ * 
+ * const validation = require('validation');
+ * const authorization = require('authorization'); 
  */

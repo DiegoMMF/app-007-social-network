@@ -1,22 +1,15 @@
-const { MongoClient } = require("mongodb");
-const uri = process.env.MONGODB_URI;
-const database = process.env.MONGODB_DB;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const getDB = require('../../database/database').getDB;
 
 module.exports = async (req, res) => {
-  try {
-    await client.connect();
-    const posts = client.db(database).collection("posts");
-    const query = {};
-    const options = { sort: { date: 1 } };
-    const cursor = posts.find(query, options);
-    const arrayOfPosts = [];
-    await cursor.forEach(object => arrayOfPosts.push(object));
-    res.json(arrayOfPosts);
-  } finally {
-    await client.close();
-  }
-};
+    try {
+        const db = getDB();
+        const collection = db.collection("posts");
+        const query = {};
+        const options = {};
+        const posts = await collection.find(query, options).toArray();
+        res.send(posts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error.");
+    }
+}
