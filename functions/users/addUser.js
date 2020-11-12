@@ -4,6 +4,7 @@ module.exports = async (req, res) => {
   try {
     const db = getDB();
     const collection = db.collection("users");
+    req.body.newUser.createdAt = Date();
     const result = await collection.insertOne(req.body.newUser);
     res.send(`${result.insertedCount} document(s) were inserted with the _id: ${result.insertedId}`);
   } catch (error) {

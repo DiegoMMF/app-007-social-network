@@ -25,19 +25,9 @@ const getDB = () => {
     }
 }
 
-// const mongoConnect = async callback => {
-//     try {
-//         await client.connect();
-//         console.log("mongoDB connection successful");
-//         _db = client.db(database);
-//         callback();
-//     } catch (error) {
-//         console.log(err);
-//         throw new Error('DB connection failed...');
-//     };
-// };
-// 
-// const getDB = () => _db ? _db : new Error('DB connect failed');
+/**
+ * We could implement the way it is explained in mongodb official web (course), too.
+ */
 
 exports.mongoConnect = mongoConnect;
 exports.getDB = getDB;

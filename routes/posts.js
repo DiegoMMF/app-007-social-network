@@ -1,24 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-const getUserByID = require('../functions/users/getUserByID');
-const getUsers = require('../functions/users/getUsers');
-const addUser = require('../functions/users/addUser');
-const deleteUser = require('../functions/users/deleteUser');
-const deleteFriend = require('./../functions/users/deleteFriend');
-const addFriend = require('./../functions/users/addFriend');
+const getPosts = require('../functions/posts/getPosts');
+const getPostByID = require('../functions/posts/getPostByID');
+const addPost = require('../functions/posts/addPost');
+const deletePost = require('../functions/posts/deletePost');
+// const deleteFriend = require('./../functions/posts/deleteFriend');
+// const addFriend = require('./../functions/posts/addFriend');
 
-router.post("/add-friend", addFriend);
-router.delete("/delete-friend", deleteFriend);
-router.delete("/delete-user/:userID", deleteUser);
-router.post("/add-user", addUser);
-router.get("/list", getUsers);
-router.get("/:userID", getUserByID);
+router.get("/list", getPosts);
+router.get("/:postID", getPostByID);
+
+// router.post("/add-friend", addFriend);
+// router.delete("/delete-friend", deleteFriend);
+router.delete("/delete-post/:postID", deletePost);
+router.post("/add-post", addPost);
+
+
 
 module.exports = router;
 
 /**
- * const getPosts = require('../functions/posts/getPosts');
+ * 
  * const addPost = require('../functions/posts/addPost');
  * const updatePost = require('../functions/posts/updatePost');
  * const deletePost = require('../functions/posts/deletePost');
