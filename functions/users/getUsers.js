@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
         const collection = db.collection("users");
         const query = {};
         const options = {};
-        const users = await collection.find(query, options).toArray();
+        const users = await collection.find(query, options).sort({createdAt: -1}).toArray();
         res.send(users);
     } catch (error) {
         console.error(error);
