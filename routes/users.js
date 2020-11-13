@@ -1,36 +1,25 @@
 const express = require('express');
 const router = express.Router();
-
-const addUser = require('../functions/users/addUser');
-
-router.post("/add-user", addUser);
-
-
-
-
-
-const getUserByID = require('../functions/users/getUserByID');
+// GETs
 const getUsers = require('../functions/users/getUsers');
+const getUserByID = require('../functions/users/getUserByID');
+// POSTs
+const userLogin = require('../functions/users/userLogin');
+const addUser = require('../functions/users/addUser');
+const addFriend = require('./../functions/users/addFriend');
+// DELETEs
 const deleteUser = require('../functions/users/deleteUser');
 const deleteFriend = require('./../functions/users/deleteFriend');
-const addFriend = require('./../functions/users/addFriend');
 
-router.post("/add-friend", addFriend);
-router.delete("/delete-friend", deleteFriend);
-router.delete("/delete-user/:userID", deleteUser);
-
+// router.post("/login", userLogin);
 router.get("/list", getUsers);
 router.get("/:userID", getUserByID);
 
-module.exports = router;
+router.post("/add-user", addUser);
+router.post("/add-friend", addFriend);
 
-/**
- * const userLogin = require('../functions/users/userLogin');
- * router.post("/login", userLogin);
- * 
- * const userSignup = require('../functions/users/userSignup');
- * router.post("/signup", userSignup);
- * 
- * const validation = require('validation');
- * const authorization = require('authorization'); 
- */
+router.delete("/delete-friend", deleteFriend);
+router.delete("/delete-user/:userID", deleteUser);
+
+
+module.exports = router;
